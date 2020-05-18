@@ -2,3 +2,10 @@
 export function escapeStringForRegExp(str) {
   return str.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&');
 }
+
+export function caseInsensitiveFirstWordMatch(word) {
+  return new RegExp(
+    escapeStringForRegExp(word),
+    'i'
+  );
+}
