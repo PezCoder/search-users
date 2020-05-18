@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
-import SearchBar from './SearchBar';
 import './searchUsers.scss';
 import {loadUsers} from '../../redux/users/users';
-import SearchSuggestion from './SearchSuggestion';
+import SearchBar from '../search-bar/SearchBar';
+import SearchSuggestion from '../search-suggestion/SearchSuggestion';
 
 function SearchUsers({ type, onChange, onClick }) {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ function SearchUsers({ type, onChange, onClick }) {
   // Load users mock data on page load
   useEffect(() => {
     dispatch(loadUsers());
-  }, []);
+  }, [dispatch]);
 
   function handleOnChange(value) {
     console.log('changing', value);
