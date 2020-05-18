@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './searchBar.scss';
 
-function SearchBar({ onChange }) {
+function SearchBar({ onChange, onKeyDown }) {
   const [value, setValue] = useState('');
   const searchInputRef = useRef(null);
 
@@ -27,6 +27,7 @@ function SearchBar({ onChange }) {
         type="text"
         value={value}
         onChange={event => setValue(event.target.value)}
+        onKeyDown={onKeyDown}
         autoCapitalize="off"
         autoComplete="off"
         placeholder="Search users by ID, address, name, items, pincode"
@@ -44,6 +45,7 @@ function SearchBar({ onChange }) {
 
 SearchBar.propTypes = {
   onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
 };
 
 export default SearchBar;

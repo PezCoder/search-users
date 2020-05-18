@@ -19,9 +19,10 @@ const SearchSuggestion = ({
   description,
   highlightWord,
 }) => {
-
+  // tabindex: -1
+  // https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets
   return (
-    <article className="search-suggestion">
+    <article className="search-suggestion" tabindex="-1">
       <h4
         className="search-suggestion__title"
         dangerouslySetInnerHTML={{ __html: highlight(title, highlightWord) }} />
@@ -31,7 +32,7 @@ const SearchSuggestion = ({
       { listItem && (
         <ul className="search-suggestion__list">
           <li>
-            <i class="fas fa-circle"></i>{listItem}
+            <i className="fas fa-circle"></i>{listItem}
           </li>
         </ul>
       )}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchSuggestion from '../search-suggestion/SearchSuggestion';
+import './searchSuggestions.scss';
 
 const SearchSuggestions = ({ suggestions, highlightWord }) => {
   return (

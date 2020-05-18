@@ -6,6 +6,7 @@ import SearchBar from '../search-bar/SearchBar';
 import SearchSuggestions from '../search-suggestions/SearchSuggestions';
 import {caseInsensitiveFirstWordMatch} from '../../utilities/utilities';
 import SearchNoResults from '../search-no-results/SearchNoResults';
+import {eventKeys} from '../../constants';
 var debounce = require('lodash.debounce');
 
 function SearchUsers({ type, onChange, onClick }) {
@@ -38,14 +39,22 @@ function SearchUsers({ type, onChange, onClick }) {
     [users]
   );
 
+
+  function handleKeyDown(event) {
+    if (event.key === eventKeys.ArrowUp
+      || event.key === eventKeys.ArrowDown) {
+    }
+  }
+
   if (!users.length) {
     return null;
   }
+
   const noSearchResults = (searchQuery && searchSuggestions && searchSuggestions.length === 0);
 
   return (
     <React.Fragment>
-      <SearchBar onChange={handleOnChange} />
+      <SearchBar onChange={handleOnChange} onKeyDown={handleKeyDown} />
       {
         searchSuggestions && <SearchSuggestions
           suggestions={searchSuggestions} highlightWord={searchQuery} />
