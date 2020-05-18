@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './searchBar.scss';
 
-function SearchBar({ type, onChange, onClick }) {
+function SearchBar({ onChange }) {
   const [value, setValue] = useState('');
   const searchInputRef = useRef(null);
 
@@ -20,7 +20,7 @@ function SearchBar({ type, onChange, onClick }) {
   }
 
   return (
-    <div className="search-bar" onClick={onClick}>
+    <div className="search-bar">
       <i className="fas fa-search search-bar__icon-search"></i>
       <input
         className="search-bar__input"
@@ -43,10 +43,7 @@ function SearchBar({ type, onChange, onClick }) {
 }
 
 SearchBar.propTypes = {
-  type: PropTypes.oneOf(['static']),
-  initialValue: PropTypes.string,
   onChange: PropTypes.func,
-  onClick: PropTypes.func,
 };
 
 export default SearchBar;

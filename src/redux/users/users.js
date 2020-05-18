@@ -22,7 +22,7 @@ export default function usersReducer(state = initialState, action = {}) {
     case LOAD_USERS_SUCCESS:
       return {
         ...state,
-        ...action.payload,
+        list: [...action.payload],
         apiStatus: 'success',
       };
 
