@@ -1,0 +1,66 @@
+@import './variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+// apply a natural box layout model to all elements, but allowing components to change
+// https://www.paulirish.com/2012/box-sizing-border-box-ftw/
+html {
+    box-sizing: border-box;
+    height:100%;
+    // By default elements with cursor:pointer has a blue highlight color for phones
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    scroll-behavior: smooth;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/*
+    Change Default Autocomplete styles in Chrome
+    https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/
+*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Clear default X from all kind of inputs */
+input::-ms-clear {  display: none; width : 0; height: 0; }
+input::-ms-reveal {  display: none; width : 0; height: 0; }
+
+body {
+    position: relative;
+    min-height: 100%;
+    overflow-x: hidden;
+    color: $color-primary-text;
+    -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    font-family: 'Roboto', sans-serif;
+}
+
+// Inputs
+input, textarea {
+    font-family: inherit;
+    // Remove default browser specific styling for inputs
+    appearance: none;
+
+    &::placeholder {
+        color: $color-placeholder;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

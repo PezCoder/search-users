@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 import {loadUsers} from './redux/users/users';
+import SearchBar from './components/search/SearchBar';
+import './styles/base.scss';
+import './app.scss';
 
 function App() {
   const dispatch = useDispatch();
@@ -13,8 +16,9 @@ function App() {
   console.log(users);
 
   return (
-    <div className="App">
-    </div>
+    <main>
+      <SearchBar />
+    </main>
   );
 }
 
