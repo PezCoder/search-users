@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.search-no-results {
+    border-top: 1px solid $color-border-separator;
+    color: $color-secondary-text;
+    min-height: 150px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

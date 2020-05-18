@@ -5,6 +5,8 @@ import {loadUsers} from '../../redux/users/users';
 import SearchBar from '../search-bar/SearchBar';
 import SearchSuggestions from '../search-suggestions/SearchSuggestions';
 import {caseInsensitiveFirstWordMatch} from '../../utilities/utilities';
+import SearchNoResults from '../search-no-results/SearchNoResults';
+var debounce = require('lodash.debounce');
 
 function SearchUsers({ type, onChange, onClick }) {
   const dispatch = useDispatch();
@@ -18,7 +20,11 @@ function SearchUsers({ type, onChange, onClick }) {
   }, [dispatch]);
 
   const handleOnChange = useCallback(
-    (value) => {
+    // Although the demo currently filters from static data locally
+    // usually this happens through an API call in real world applications
+    // Hence a debounce is necessary to avoid API calls on every keystroke
+    // which can be expensive
+    debounce(value => {
       if (!value.trim()) {
         setSearchSuggestions(null);
         return;
@@ -28,13 +34,14 @@ function SearchUsers({ type, onChange, onClick }) {
       setSearchSuggestions(
         filterSearchSuggestions(users, value)
       );
-    },
+    }, 300),
     [users]
   );
 
   if (!users.length) {
     return null;
   }
+  const noSearchResults = (searchQuery && searchSuggestions && searchSuggestions.length === 0);
 
   return (
     <React.Fragment>
@@ -43,6 +50,7 @@ function SearchUsers({ type, onChange, onClick }) {
         searchSuggestions && <SearchSuggestions
           suggestions={searchSuggestions} highlightWord={searchQuery} />
       }
+      { noSearchResults && <SearchNoResults title="No User Found" /> }
     </React.Fragment>
   );
 }
