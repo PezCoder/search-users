@@ -8,9 +8,10 @@
     flex-direction: column;
     cursor: pointer;
 
-    &:hover,
-    &:active,
-    &:focus {
+    // &:hover,
+    // &:active,
+    // &:focus,
+    &.focus {
         background: $color-background-highlight;
     }
 
