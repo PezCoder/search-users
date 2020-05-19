@@ -1,5 +1,6 @@
 export const UPDATE_SEARCH_SUGGESTIONS = 'UPDATE_SEARCH_SUGGESTIONS';
 export const UPDATE_SEARCH_QUERY = 'UPDATE_SEARCH_QUERY';
+export const UPDATE_FOCUS_TO_INDEX = 'UPDATE_FOCUS_TO_INDEX';
 
 export const updateSearchSuggestions = (suggestions) => ({
   type: UPDATE_SEARCH_SUGGESTIONS,
@@ -15,9 +16,17 @@ export const updateSearchQuery = (query) => ({
   },
 });
 
+export const updateFocusToIndex = (suggestionIndex) => ({
+  type: UPDATE_FOCUS_TO_INDEX,
+  payload: {
+    suggestionIndex
+  },
+});
+
 const initialState = {
   suggestions: null,
   query: '',
+  focusedIndex: null,
 };
 
 export default function searchReducer(state = initialState, action = {}) {
@@ -32,6 +41,12 @@ export default function searchReducer(state = initialState, action = {}) {
       return {
         ...state,
         query: action.payload.query,
+      };
+
+    case UPDATE_FOCUS_TO_INDEX:
+      return {
+        ...state,
+        focusedIndex: action.payload.suggestionIndex,
       };
 
     default:
