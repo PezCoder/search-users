@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 import './searchUsers.scss';
 import {loadUsers} from '../../redux/users/users';
@@ -11,7 +11,8 @@ import {
   updateSearchSuggestions,
   updateSearchQuery,
   focusNextSuggestion,
-  focusPreviousSuggestion
+  focusPreviousSuggestion,
+  updateDisableMouseEvents
 } from '../../redux/search/search';
 var debounce = require('lodash.debounce');
 
@@ -64,8 +65,10 @@ function SearchUsers({ type, onChange, onClick }) {
 
   function handleKeyDown(event) {
     if (event.key === eventKeys.ArrowDown) {
+      dispatch(updateDisableMouseEvents(true));
       dispatch(focusNextSuggestion());
     } else if (event.key === eventKeys.ArrowUp) {
+      dispatch(updateDisableMouseEvents(true));
       dispatch(focusPreviousSuggestion());
     }
   }

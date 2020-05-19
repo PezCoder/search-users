@@ -21,6 +21,7 @@ const SearchSuggestion = ({
   highlightWord,
   focus,
   onMouseOver,
+  onMouseMove,
 }) => {
   const ref = useRef(null);
   useEffect(() => {
@@ -38,7 +39,12 @@ const SearchSuggestion = ({
   );
 
   return (
-    <article className={searchSuggestionClass} onMouseOver={onMouseOver} ref={ref}>
+    <article
+      className={searchSuggestionClass}
+      onMouseOver={onMouseOver}
+      ref={ref}
+      onMouseMove={onMouseMove}
+    >
       <h4
         className="search-suggestion__title"
         dangerouslySetInnerHTML={{ __html: highlight(title, highlightWord) }} />
@@ -65,6 +71,8 @@ SearchSuggestion.propTypes = {
   listItem: PropTypes.string,
   description: PropTypes.string,
   highlightWord: PropTypes.string,
+  onMouseOver: PropTypes.func,
+  onMouseMove: PropTypes.func,
 };
 
 export default SearchSuggestion;

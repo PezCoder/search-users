@@ -3,8 +3,55 @@ export const UPDATE_SEARCH_QUERY = 'UPDATE_SEARCH_QUERY';
 export const UPDATE_FOCUS_TO_INDEX = 'UPDATE_FOCUS_TO_INDEX';
 export const FOCUS_NEXT_SUGGESTION = 'FOCUS_NEXT_SUGGESTION';
 export const FOCUS_PREVIOUS_SUGGESTION = 'FOCUS_PREVIOUS_SUGGESTION';
+export const UPDATE_DISABLE_MOUSE_EVENT = 'UPDATE_DISABLE_MOUSE_EVENT';
+
+const initialState = {
+  suggestions: null,
+  query: '',
+  focusedIndex: null,
+  disableMouseEvents: false,
+};
+
+export default function searchReducer(state = initialState, action = {}) {
+  switch (action.type) {
+    case UPDATE_SEARCH_SUGGESTIONS:
+      return {
+        ...state,
+        suggestions: action.payload.suggestions,
+      };
+
+    case UPDATE_SEARCH_QUERY:
+      return {
+        ...state,
+        query: action.payload.query,
+      };
+
+    case UPDATE_FOCUS_TO_INDEX:
+      return {
+        ...state,
+        focusedIndex: action.payload.suggestionIndex,
+      };
+
+    case UPDATE_DISABLE_MOUSE_EVENT:
+      return {
+        ...state,
+        disableMouseEvents: action.payload.disable,
+      };
+
+
+    default:
+      return { ...state };
+  }
+}
 
 export const updateSearchSuggestions = (suggestions) => ({
+  type: UPDATE_SEARCH_SUGGESTIONS,
+  payload: {
+    suggestions
+  },
+});
+
+export const disableMouseEvents = (suggestions) => ({
   type: UPDATE_SEARCH_SUGGESTIONS,
   payload: {
     suggestions
@@ -22,6 +69,13 @@ export const updateFocusToIndex = (suggestionIndex) => ({
   type: UPDATE_FOCUS_TO_INDEX,
   payload: {
     suggestionIndex
+  },
+});
+
+export const updateDisableMouseEvents = (disable) => ({
+  type: UPDATE_DISABLE_MOUSE_EVENT,
+  payload: {
+    disable
   },
 });
 
@@ -63,33 +117,3 @@ export const focusPreviousSuggestion = () => (dispatch, getState) => {
   ));
 };
 
-const initialState = {
-  suggestions: null,
-  query: '',
-  focusedIndex: null,
-};
-
-export default function searchReducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case UPDATE_SEARCH_SUGGESTIONS:
-      return {
-        ...state,
-        suggestions: action.payload.suggestions,
-      };
-
-    case UPDATE_SEARCH_QUERY:
-      return {
-        ...state,
-        query: action.payload.query,
-      };
-
-    case UPDATE_FOCUS_TO_INDEX:
-      return {
-        ...state,
-        focusedIndex: action.payload.suggestionIndex,
-      };
-
-    default:
-      return { ...state };
-  }
-}
