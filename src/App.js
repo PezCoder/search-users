@@ -8,7 +8,7 @@ function App() {
   return (
     <main>
       <h4 className="hint">Search Users</h4>
-      <p class="hint-details">You can use Mouse or Keyboard Arrow keys (Up/Down) to navigate the list</p>
+      <p className="hint-details">You can use Mouse or Keyboard Arrow keys (Up/Down) to navigate the list</p>
       <section className="search">
         <SearchUsers />
       </section>
