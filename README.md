@@ -9,7 +9,7 @@ Experience here: https://pezcoder.github.io/search-users
 - [x] Keyboard navigation of list using up & down arrow keys
 - [x] One card should highlight when use both mouse & keyboard
 - [x] Focused element to scroll into view
-- [] Mouse & keyboard events to play along
+- [ ] Mouse & keyboard events to play along
 
 ## Screenshots
 Search Results Found                |  No Search results
