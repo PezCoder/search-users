@@ -26,7 +26,10 @@ const SearchSuggestion = ({
   useEffect(() => {
     focus && ref.current &&
       ref.current.scrollIntoView &&
-      ref.current.scrollIntoView({ block: 'center' });
+      ref.current.scrollIntoView({
+        block: 'center',
+        behavior: "smooth"
+      });
   }, [focus]);
 
   const searchSuggestionClass = classnames(
@@ -34,10 +37,8 @@ const SearchSuggestion = ({
     { 'focus': focus }
   );
 
-  // tabindex: -1
-  // https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets
   return (
-    <article className={searchSuggestionClass} tabindex="-1" onMouseOver={onMouseOver} ref={ref}>
+    <article className={searchSuggestionClass} onMouseOver={onMouseOver} ref={ref}>
       <h4
         className="search-suggestion__title"
         dangerouslySetInnerHTML={{ __html: highlight(title, highlightWord) }} />

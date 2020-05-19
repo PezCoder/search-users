@@ -1,9 +1,29 @@
 @import './styles/variables.scss';
 
+body {
+    justify-content: center;
+    display: flex;
+    padding: 40px 15px;
+}
+
 main {
-    margin: 15px;
+    max-width: 400px;
+}
+
+.search {
     box-shadow: 1px 1px 8px $color-shadow;
     border-radius: 4px;
     overflow: hidden;
     border: solid 1px $color-border;
+}
+
+.hint {
+    font-size: 20px;
+}
+
+.hint-details {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    line-height: 1.4;
 }

@@ -7,7 +7,11 @@ import SearchUsers from './components/search-users/SearchUsers';
 function App() {
   return (
     <main>
-      <SearchUsers />
+      <h4 className="hint">Search Users</h4>
+      <p class="hint-details">You can use Mouse or Keyboard Arrow keys (Up/Down) to navigate the list</p>
+      <section className="search">
+        <SearchUsers />
+      </section>
     </main>
   );
 }

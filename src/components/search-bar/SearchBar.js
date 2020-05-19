@@ -30,7 +30,7 @@ function SearchBar({ onChange, onKeyDown }) {
         onKeyDown={onKeyDown}
         autoCapitalize="off"
         autoComplete="off"
-        placeholder="Search users by ID, address, name, items, pincode"
+        placeholder="Start typing like: Apartment..."
         ref={searchInputRef}
       />
       {value && (

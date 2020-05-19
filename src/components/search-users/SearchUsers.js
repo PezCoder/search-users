@@ -84,6 +84,7 @@ function SearchUsers({ type, onChange, onClick }) {
           suggestions={searchSuggestions} highlightWord={searchQuery} />
       }
       { noSearchResults && <SearchNoResults title="No User Found" /> }
+
     </React.Fragment>
   );
 }
