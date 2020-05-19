@@ -44,6 +44,25 @@ export const focusNextSuggestion = () => (dispatch, getState) => {
   ));
 };
 
+export const focusPreviousSuggestion = () => (dispatch, getState) => {
+  const { search } = getState();
+  const { focusedIndex, suggestions } = search;
+
+  // If no suggestions, reset the index
+  if (!suggestions || !suggestions.length) {
+    return dispatch(updateFocusToIndex(null));
+  }
+
+  const isFirstSuggestionFocused = focusedIndex === 0;
+  if (isFirstSuggestionFocused) {
+    return dispatch(updateFocusToIndex(suggestions.length - 1));
+  }
+
+  return dispatch(updateFocusToIndex(
+    focusedIndex === null ? suggestions.length - 1 : focusedIndex -1
+  ));
+};
+
 const initialState = {
   suggestions: null,
   query: '',
