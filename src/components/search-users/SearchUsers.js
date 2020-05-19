@@ -7,13 +7,33 @@ import SearchSuggestions from '../search-suggestions/SearchSuggestions';
 import {caseInsensitiveFirstWordMatch} from '../../utilities/utilities';
 import SearchNoResults from '../search-no-results/SearchNoResults';
 import {eventKeys} from '../../constants';
+import {
+  updateSearchSuggestions,
+  updateSearchQuery
+} from '../../redux/search/search';
 var debounce = require('lodash.debounce');
 
 function SearchUsers({ type, onChange, onClick }) {
   const dispatch = useDispatch();
-  const users = useSelector(state => state.users.list, shallowEqual);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchSuggestions, setSearchSuggestions] = useState(null);
+
+  const { searchQuery, searchSuggestions, users } = useSelector(
+    state => ({
+      users: state.users.list,
+      searchQuery: state.search.query,
+      searchSuggestions: state.search.suggestions,
+    }),
+    shallowEqual
+  );
+
+  const setSearchSuggestions = useCallback(
+    (suggestions) => dispatch(updateSearchSuggestions(suggestions)),
+    [dispatch]
+  );
+
+  const setSearchQuery = useCallback(
+    (searchQuery) => dispatch(updateSearchQuery(searchQuery)),
+    [dispatch]
+  );
 
   // Load users mock data on page load
   useEffect(() => {
