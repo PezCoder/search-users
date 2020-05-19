@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {caseInsensitiveFirstWordMatch} from '../../utilities/utilities';
@@ -22,6 +22,13 @@ const SearchSuggestion = ({
   focus,
   onMouseOver,
 }) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    focus && ref.current &&
+      ref.current.scrollIntoView &&
+      ref.current.scrollIntoView({ block: 'center' });
+  }, [focus]);
+
   const searchSuggestionClass = classnames(
     'search-suggestion',
     { 'focus': focus }
@@ -30,7 +37,7 @@ const SearchSuggestion = ({
   // tabindex: -1
   // https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets
   return (
-    <article className={searchSuggestionClass} tabindex="-1" onMouseOver={onMouseOver}>
+    <article className={searchSuggestionClass} tabindex="-1" onMouseOver={onMouseOver} ref={ref}>
       <h4
         className="search-suggestion__title"
         dangerouslySetInnerHTML={{ __html: highlight(title, highlightWord) }} />

@@ -9,7 +9,8 @@ import SearchNoResults from '../search-no-results/SearchNoResults';
 import {eventKeys} from '../../constants';
 import {
   updateSearchSuggestions,
-  updateSearchQuery
+  updateSearchQuery,
+  focusNextSuggestion
 } from '../../redux/search/search';
 var debounce = require('lodash.debounce');
 
@@ -61,8 +62,10 @@ function SearchUsers({ type, onChange, onClick }) {
 
 
   function handleKeyDown(event) {
-    if (event.key === eventKeys.ArrowUp
-      || event.key === eventKeys.ArrowDown) {
+    // if (event.key === eventKeys.ArrowUp
+      // || event.key === eventKeys.ArrowDown) {
+    if (event.key === eventKeys.ArrowDown) {
+      dispatch(focusNextSuggestion());
     }
   }
 

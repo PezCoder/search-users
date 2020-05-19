@@ -1,6 +1,8 @@
 export const UPDATE_SEARCH_SUGGESTIONS = 'UPDATE_SEARCH_SUGGESTIONS';
 export const UPDATE_SEARCH_QUERY = 'UPDATE_SEARCH_QUERY';
 export const UPDATE_FOCUS_TO_INDEX = 'UPDATE_FOCUS_TO_INDEX';
+export const FOCUS_NEXT_SUGGESTION = 'FOCUS_NEXT_SUGGESTION';
+export const FOCUS_PREVIOUS_SUGGESTION = 'FOCUS_PREVIOUS_SUGGESTION';
 
 export const updateSearchSuggestions = (suggestions) => ({
   type: UPDATE_SEARCH_SUGGESTIONS,
@@ -22,6 +24,25 @@ export const updateFocusToIndex = (suggestionIndex) => ({
     suggestionIndex
   },
 });
+
+export const focusNextSuggestion = () => (dispatch, getState) => {
+  const { search } = getState();
+  const { focusedIndex, suggestions } = search;
+
+  // If no suggestions, reset the index
+  if (!suggestions || !suggestions.length) {
+    return dispatch(updateFocusToIndex(null));
+  }
+
+  const isLastSuggestionFocused = focusedIndex === suggestions.length - 1;
+  if (isLastSuggestionFocused) {
+    return dispatch(updateFocusToIndex(0));
+  }
+
+  return dispatch(updateFocusToIndex(
+    focusedIndex === null ? 0 : focusedIndex + 1
+  ));
+};
 
 const initialState = {
   suggestions: null,
